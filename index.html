@@ -31,7 +31,7 @@
             padding: 15px 5%;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: flex-start; /* Logo do lewej na desktopie */
             border-bottom: 1px solid var(--divider);
             position: sticky;
             top: 0;
@@ -39,21 +39,10 @@
             width: 100%;
         }
 
-        .header-left { display: flex; align-items: center; min-width: 0; }
-        
         .logo-img {
             height: 40px;
             max-width: 100%;
             object-fit: contain;
-            margin-right: 15px;
-        }
-
-        .github-link { flex-shrink: 0; }
-        .github-link img {
-            width: 24px;
-            filter: invert(1);
-            transition: opacity 0.3s;
-            display: block;
         }
 
         .hero {
@@ -165,10 +154,33 @@
         }
 
         .footer-logo { height: 30px; margin-bottom: 20px; opacity: 0.7; }
+        
+        .github-footer {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            transition: color 0.3s;
+        }
+
+        .github-footer:hover { color: var(--primary-orange); }
+        
+        .github-footer img {
+            width: 20px;
+            filter: invert(0.7);
+            margin-right: 8px;
+        }
+
+        .github-footer:hover img { filter: invert(0.7) sepia(1) saturate(5) hue-rotate(-10deg); }
+
         .contact-email { color: var(--primary-orange); text-decoration: none; font-weight: bold; }
 
         @media (max-width: 768px) {
-            header { padding: 10px 15px; }
+            header { 
+                padding: 10px 15px; 
+                justify-content: center; /* Logo na środku na telefonie */
+            }
             .logo-img { height: 32px; }
             .hero h2 { font-size: 1.8rem; }
             .hero h3 { font-size: 1.1rem; }
@@ -180,12 +192,7 @@
 <body>
 
 <header>
-    <div class="header-left">
-        <img src="plc_main_logo.png" alt="PLC Logo" class="logo-img">
-    </div>
-    <a href="https://github.com/KomarDev-apps" class="github-link" target="_blank" title="Visit my GitHub">
-        <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub">
-    </a>
+    <img src="plc_main_logo.png" alt="PLC Logo" class="logo-img">
 </header>
 
 <section class="hero">
@@ -256,6 +263,11 @@
 </section>
 
 <footer>
+    <a href="https://github.com/KomarDev-apps" class="github-footer" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub">
+        <span>Project Source Code</span>
+    </a>
+    <br>
     <img src="plc_main_logo.png" alt="PLC Logo" class="footer-logo">
     <div class="company-info">
         Michał "Komar" Duliński<br>
