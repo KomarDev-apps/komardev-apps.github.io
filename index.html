@@ -15,12 +15,15 @@
             --divider: #444444;
         }
 
+        * { box-sizing: border-box; }
+
         body {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-primary);
             margin: 0;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         header {
@@ -33,73 +36,70 @@
             position: sticky;
             top: 0;
             z-index: 1000;
+            width: 100%;
         }
 
-        .header-left { display: flex; align-items: center; }
+        .header-left { display: flex; align-items: center; min-width: 0; }
         
         .logo-img {
             height: 40px;
+            max-width: 100%;
+            object-fit: contain;
             margin-right: 15px;
         }
 
-        header h1 {
-            font-size: 1.2rem;
-            margin: 0;
-            color: var(--primary-orange);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
+        .github-link { flex-shrink: 0; }
         .github-link img {
             width: 24px;
             filter: invert(1);
             transition: opacity 0.3s;
+            display: block;
         }
 
         .hero {
-            padding: 80px 5%;
+            padding: 60px 5%;
             text-align: center;
             background: radial-gradient(circle at top, #1a1a1a 0%, #000000 80%);
         }
 
-                /* POPRAWIONA IKONA Z FILTREM DROP-SHADOW */
+        /* ANIMOWANA IKONA Z EFEKTEM PULSOWANIA */
         .app-icon-main {
-            width: 300px;
-            height: 300px;
+            width: 280px;
+            height: 280px;
+            max-width: 80%;
             margin-bottom: 30px;
-            /* Usunęliśmy box-shadow i border-radius (filtr sam dopasuje się do kształtu) */
-            filter: drop-shadow(0 0 20px rgba(255, 152, 0, 0.6));
-            /* transition dla płynnego efektu przy ładowaniu */
-            transition: filter 0.3s ease;
+            filter: drop-shadow(0 0 15px rgba(255, 152, 0, 0.5));
+            animation: glow-pulse 4s infinite ease-in-out;
         }
 
-        .app-icon-main:hover {
-            filter: drop-shadow(0 0 30px rgba(255, 152, 0, 0.8));
+        @keyframes glow-pulse {
+            0% { filter: drop-shadow(0 0 15px rgba(255, 152, 0, 0.4)) brightness(100%); }
+            50% { filter: drop-shadow(0 0 30px rgba(255, 152, 0, 0.8)) brightness(110%); }
+            100% { filter: drop-shadow(0 0 15px rgba(255, 152, 0, 0.4)) brightness(100%); }
         }
 
-        .hero h2 { font-size: 2.8rem; margin-bottom: 10px; font-weight: 800; }
-        .hero h3 { color: var(--primary-orange); font-size: 1.4rem; margin-bottom: 30px; font-weight: 400; }
-        .hero p { color: var(--text-secondary); max-width: 800px; margin: 0 auto 40px; font-size: 1.2rem; }
+        .hero h2 { font-size: 2.4rem; margin-bottom: 10px; font-weight: 800; }
+        .hero h3 { color: var(--primary-orange); font-size: 1.3rem; margin-bottom: 30px; font-weight: 400; }
+        .hero p { color: var(--text-secondary); max-width: 800px; margin: 0 auto 40px; font-size: 1.1rem; }
 
         .store-buttons {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
             flex-wrap: wrap;
         }
 
-        /* NOWE PRZYCISKI SKLEPÓW */
         .store-button {
             display: flex;
             align-items: center;
             background: #000;
             color: white;
-            padding: 12px 25px;
+            padding: 10px 20px;
             border-radius: 12px;
             text-decoration: none;
             border: 1px solid var(--divider);
             transition: 0.3s;
-            min-width: 210px;
+            min-width: 200px;
             text-align: left;
         }
 
@@ -110,36 +110,31 @@
             box-shadow: 0 5px 15px rgba(255, 152, 0, 0.1);
         }
 
-        .store-icon {
-            width: 32px;
-            height: 32px;
-            margin-right: 15px;
-        }
-
-        .store-text span { font-size: 0.75rem; display: block; color: var(--text-secondary); text-transform: uppercase; }
-        .store-text b { font-size: 1.25rem; display: block; line-height: 1.2; }
+        .store-icon { width: 28px; height: 28px; margin-right: 12px; }
+        .store-text span { font-size: 0.7rem; display: block; color: var(--text-secondary); text-transform: uppercase; }
+        .store-text b { font-size: 1.1rem; display: block; line-height: 1.2; }
 
         .features {
-            padding: 80px 5%;
+            padding: 60px 5%;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
         }
 
         .feature-card {
             background-color: var(--surface-color);
-            padding: 40px;
+            padding: 30px;
             border-radius: 15px;
             border: 1px solid var(--divider);
             transition: transform 0.3s;
         }
 
         .feature-card:hover { transform: translateY(-5px); }
-        .feature-card h4 { color: var(--primary-orange); font-size: 1.3rem; margin-top: 0; }
-        .feature-card p { color: var(--text-secondary); font-size: 1rem; }
+        .feature-card h4 { color: var(--primary-orange); font-size: 1.2rem; margin-top: 0; }
+        .feature-card p { color: var(--text-secondary); font-size: 0.95rem; }
 
         .db-section {
-            padding: 80px 5%;
+            padding: 60px 5%;
             background-color: #0a0a0a;
             border-top: 1px solid var(--divider);
             border-bottom: 1px solid var(--divider);
@@ -156,6 +151,7 @@
             border-radius: 12px;
             font-size: 0.95rem;
             color: var(--text-secondary);
+            border: 1px solid var(--divider);
         }
 
         .privacy-box h2 { color: var(--primary-orange); margin-top: 0; }
@@ -164,7 +160,7 @@
             padding: 60px 5%;
             text-align: center;
             border-top: 1px solid var(--divider);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-secondary);
         }
 
@@ -172,8 +168,12 @@
         .contact-email { color: var(--primary-orange); text-decoration: none; font-weight: bold; }
 
         @media (max-width: 768px) {
-            .hero h2 { font-size: 2rem; }
+            header { padding: 10px 15px; }
+            .logo-img { height: 32px; }
+            .hero h2 { font-size: 1.8rem; }
+            .hero h3 { font-size: 1.1rem; }
             .store-button { width: 100%; justify-content: center; }
+            .privacy-box { padding: 25px; margin: 40px 15px; }
         }
     </style>
 </head>
@@ -197,7 +197,6 @@
         Whether you're in the warehouse or at FOH, PLC provides the power of a desktop workstation in your pocket.
     </p>
     <div class="store-buttons">
-        <!-- APP STORE BUTTON -->
         <a href="#" class="store-button">
             <svg class="store-icon" viewBox="0 0 384 512" fill="white">
                 <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
@@ -208,7 +207,6 @@
             </div>
         </a>
 
-        <!-- GOOGLE PLAY BUTTON -->
         <a href="#" class="store-button">
             <svg class="store-icon" viewBox="0 0 512 512" fill="white">
                 <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/>
@@ -246,13 +244,14 @@
     <a href="mailto:komardev.apps@gmail.com" class="contact-email">Contact us for setup instructions</a>
 </section>
 
-<section class="privacy-box">
+<section class="privacy-box" id="privacy">
     <h2>Privacy & Technical Transparency</h2>
     <p>We respect the professional nature of your work. PLC operates with a local-first data policy.</p>
     <ul>
         <li><strong>Data Handling:</strong> All MVR/CSV file processing and patch calculations are performed locally. Your project data is never uploaded to our servers.</li>
         <li><strong>Camera Permission:</strong> Used only for the built-in <strong>Flashlight</strong> utility, a must-have for every tech in dark environments.</li>
         <li><strong>Internet:</strong> Used exclusively to download fixture libraries or MVR files from the cloud. No user-specific data is collected.</li>
+        <li><strong>Cookies:</strong> This website is a static landing page and does not use any cookies or tracking scripts.</li>
     </ul>
 </section>
 
@@ -266,7 +265,7 @@
         VAT ID / NIP: PL1251468356 | REGON: 147054269<br>
         Contact: <a href="mailto:komardev.apps@gmail.com" class="contact-email">komardev.apps@gmail.com</a>
     </div>
-    <p>&copy; 2025 Komar Dev. Developed by technicians for the industry.</p>
+    <p>&copy; 2025-2026 Komar Dev. Developed by technicians for the industry.</p>
 </footer>
 
 </body>
